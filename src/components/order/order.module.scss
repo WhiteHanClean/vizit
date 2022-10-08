@@ -1,3 +1,25 @@
 .order{
-    margin-top: 510px;  
+    margin-top: 540px;  
+    text-align:center;
+
+    .order_person_info{
+        width: 150px;
+        margin: 0 auto;
+        .order_title{
+            font-size:36px;
+         }
+         .order_hr{
+             width: 30%;
+             margin: 0 auto;
+         }
+         .order_person{
+             margin-top: 20px;
+             list-style: 1.6rem;
+         }
+    }
+
+    .order_block{
+        width: 80%;
+        margin: 20px auto;
+    }
 }
