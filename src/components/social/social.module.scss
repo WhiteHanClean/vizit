@@ -1,10 +1,33 @@
-.social_mead{
-  width: 150px;
-  margin: 0 auto;
-  display: flex;
-  justify-content:space-between;
-  .social_item{
-    width: 50px;
-    height: 50px;
+.social {
+  margin-top: 150px;
+  a{
+    text-decoration: none;
+    color: white;
+  }
+
+  .social_mead {
+    width: 350px;
+    margin: 40px auto;
+    display: flex;
+    justify-content: space-between;
+    .social_item {
+      width: 50px;
+      height: 50px;
+    }
+    svg {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .social_btn {
+    width: 80%;
+    margin: 50px auto;
+    a{
+      width: 100%;
+    }
+    button{
+      width: 100%;
+    }
   }
 }

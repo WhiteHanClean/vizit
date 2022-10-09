@@ -1,0 +1,18 @@
+.redirect{
+  padding: 40px;
+  h2{
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  p{
+    margin: 0;
+  }
+  .redirect_item{
+    margin: 10px 0px;
+  }
+  .redirect_btn{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+  }
+}
