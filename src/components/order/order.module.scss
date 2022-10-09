@@ -1,5 +1,5 @@
 .order{
-    margin-top: 540px;  
+    margin-top: 540px;
     text-align:center;
 
     .order_person_info{
@@ -22,4 +22,11 @@
         width: 80%;
         margin: 20px auto;
     }
+
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

@@ -3,6 +3,7 @@ import Main from "./pages/main/main";
 import { Routes, Route, Link } from "react-router-dom";
 import Redirect from "./pages/Redirect/Redirect";
 import Auth from "./pages/auth/Auth";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -10,11 +11,11 @@ function App() {
 
 
       <Routes>
-        <Route path="/" element={ <Main />} />
-        <Route path="/redirect" element={<Redirect/>} />
+        <Route path="/user/:id" element={ <Main />} />
+        <Route path="/redirect/:id" element={<Redirect/>} />
         <Route path="/auth" element={ <Auth/>} />
       </Routes>
-
+      <Toaster />
     </div>
   );
 }

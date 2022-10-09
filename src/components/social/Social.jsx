@@ -10,30 +10,30 @@ import { Space } from "antd";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
-const Social = () => {
+const Social = ({ user }) => {
   return (
     <div className={s.social}>
       <div className={s.social_mead}>
-        <div className={s.social_item}>
+        <a href={user?.link_to_instagram} target='_blank' className={s.social_item}>
           <Space>
             <InstagramOutlined />
           </Space>
-        </div>
-        <div className={s.social_item}>
+        </a>
+        <a href={user?.link_to_whatsapp} target='_blank' className={s.social_item}>
           <Space>
             <WhatsAppOutlined />
           </Space>
-        </div>
-        <div className={s.social_item}>
+        </a>
+        <a href={user?.link_to_facebook} target='_blank' className={s.social_item}>
           <Space>
             <FacebookOutlined />
           </Space>
-        </div>
-        <div className={s.social_item}>
+        </a>
+        <a href={user?.link_to_website} target='_blank' className={s.social_item}>
           <Space>
             <ChromeOutlined />
           </Space>
-        </div>
+        </a>
       </div>
 
       <div className={s.social_btn}>
@@ -41,7 +41,7 @@ const Social = () => {
           <Button variant="primary" size="lg">
             <a href="">070943534534</a>
           </Button>
-          <Link to="/redirect">
+          <Link to={`/redirect/${user?.id}`}>
             <Button variant="secondary" size="lg">
               Редактировать
             </Button>

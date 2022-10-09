@@ -1,5 +1,8 @@
 import { useForm } from "react-hook-form";
 import s from"./auth.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { userActivate } from "../../store/reducers";
+import { useNavigate } from "react-router";
 export default function Auth() {
   const {
     register,
@@ -7,23 +10,21 @@ export default function Auth() {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const dispatch = useDispatch();
+  const { isActivated, id } = useSelector(state => state.auth)
+  const navigate = useNavigate();
+  const onSubmit = (data) => dispatch(userActivate(data));
 
-  console.log(watch("example")); // watch input value by passing the name of it
-
+  if (isActivated) {
+    navigate(`/user/${id}`)
+  }
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <div className={s.auth}>
       <h2 className={s.title}>Авторизация</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {/* register your input into the hook by invoking the "register" function */}
-        <input className={s.auth_input} defaultValue="test" {...register("example")} />
-
-        {/* include validation with required or other standard HTML validation rules */}
-        <input className={s.auth_input} {...register("exampleRequired", { required: true })} />
-        {/* errors will return when field validation fails  */}
+        <input className={s.auth_input} defaultValue="test" {...register("email")} />
+        <input className={s.auth_input} {...register("password", { required: true })} />
         {errors.exampleRequired && <span>This field is required</span>}
-
         <input type="submit" />
       </form>
     </div>
