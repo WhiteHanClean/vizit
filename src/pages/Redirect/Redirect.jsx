@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import {Link} from "react-router-dom"
 import { EditUserTab } from "../../components/Tabs/editUserTab/EditUserTab";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { getUser } from "../../store/reducers";
 import { TimesTab } from "../../components/Tabs/timesTab/TimesTab";
 import { BooksTab } from "../../components/Tabs/booksTab/BooksTab";
@@ -13,10 +13,15 @@ const Redirect = () => {
   const { id } = useParams();
   const { user } = useSelector(state => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getUser(id))
   }, [])
+
+  if (!localStorage.getItem('token')) {
+    navigate(-1)
+  }
 
   return (
     <div className={s.redirect}>

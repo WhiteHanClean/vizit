@@ -10,10 +10,10 @@ const Profile = () => {
     const data = e.target.files[0];
     setFileProfile(data);
   };
-  console.log(user)
+
   return (
     <div className={s.profile_block}>
-      <input className={s.profile} type="file" onChange={handleChangeProfile} />
+      <input disabled={!localStorage.getItem('token')} className={s.profile} type="file" onChange={handleChangeProfile} />
       {user?.logo && (
         <div>
           {/* <span>{file.name}</span> */}

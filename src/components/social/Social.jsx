@@ -41,11 +41,11 @@ const Social = ({ user }) => {
           <Button variant="primary" size="lg">
             <a href="">070943534534</a>
           </Button>
-          <Link to={`/redirect/${user?.id}`}>
+          {!!localStorage.getItem('token') && <Link to={`/redirect/${user?.id}`}>
             <Button variant="secondary" size="lg">
               Редактировать
             </Button>
-          </Link>
+          </Link>}
         </div>
       </div>
     </div>

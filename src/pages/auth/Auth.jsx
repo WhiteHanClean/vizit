@@ -22,8 +22,8 @@ export default function Auth() {
     <div className={s.auth}>
       <h2 className={s.title}>Авторизация</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input className={s.auth_input} defaultValue="test" {...register("email")} />
-        <input className={s.auth_input} {...register("password", { required: true })} />
+        <input className={s.auth_input} type='email' placeholder={'E-mail'} {...register("email")} />
+        <input className={s.auth_input} type='password' placeholder={'Password'} {...register("password", { required: true })} />
         {errors.exampleRequired && <span>This field is required</span>}
         <input type="submit" />
       </form>

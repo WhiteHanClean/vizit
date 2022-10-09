@@ -13,7 +13,7 @@ const Intro = () => {
   console.log(`https://atlassoft.space/salam/public${user?.image}`)
   return (
     <>
-      <input className={s.intro} type="file" onChange={handleChange} />
+      <input disabled={!localStorage.getItem('token')} className={s.intro} type="file" onChange={handleChange} />
       <div className={s.intro_back}>
         <Profile/>
       </div>
