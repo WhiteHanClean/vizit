@@ -14,21 +14,13 @@ export const EditUserTab = ({user}) => {
     email: user?.email,
     image: user?.image,
     logo: user?.logo,
+    phone_number: user?.phoneNumber,
     subject: user?.subject,
     description: user?.description,
-    msisdn: user?.msisdn,
-    msisdn_additional: user?.msisdn_additional,
     link_to_instagram: user?.link_to_instagram,
-    link_to_twitter: user?.link_to_twitter,
-    link_to_facebook: user?.link_to_facebook,
-    link_to_tiktok: user?.link_to_tiktok,
-    link_to_whatsapp: user?.link_to_whatsapp,
     link_to_youtube: user?.link_to_youtube,
     link_to_linkedin: user?.link_to_linkedin,
     link_to_telegram: user?.link_to_telegram,
-    website: user?.website,
-    link_to_vk: user?.link_to_vk,
-    link_to_map: user?.link_to_map,
     address: user?.address
   })
   const dispatch = useDispatch();
@@ -57,21 +49,13 @@ export const EditUserTab = ({user}) => {
         email: user?.email,
         image: user?.image,
         logo: user?.logo,
+        phone_number: user?.phoneNumber,
         subject: user?.subject,
         description: user?.description,
-        msisdn: user?.msisdn,
-        msisdn_additional: user?.msisdn_additional,
         link_to_instagram: user?.link_to_instagram,
-        link_to_twitter: user?.link_to_twitter,
-        link_to_facebook: user?.link_to_facebook,
-        link_to_tiktok: user?.link_to_tiktok,
-        link_to_whatsapp: user?.link_to_whatsapp,
         link_to_youtube: user?.link_to_youtube,
         link_to_linkedin: user?.link_to_linkedin,
         link_to_telegram: user?.link_to_telegram,
-        website: user?.website,
-        link_to_vk: user?.link_to_vk,
-        link_to_map: user?.link_to_map,
         address: user?.address
       })
       reset(values)
@@ -139,6 +123,15 @@ export const EditUserTab = ({user}) => {
         onChange={handleChange}
       />
 
+      <p>Номер телефона</p>
+      <input
+        {...register('phone_number')}
+        className={s.redirect_item}
+        name='phone_number'
+        value={values.phone_number || ''}
+        onChange={handleChange}
+      />
+
       <p>Описание</p>
       <input
         {...register('description')}
@@ -148,25 +141,6 @@ export const EditUserTab = ({user}) => {
         onChange={handleChange}
       />
 
-      <p>Msisdn</p>
-      <input
-        {...register('msisdn')}
-        className={s.redirect_item}
-        name='msisdn'
-        value={values.msisdn || ''}
-        onChange={handleChange}
-      />
-
-      <p>Msisdn Additional</p>
-      <input
-        {...register('msisdn_additional')}
-        className={s.redirect_item}
-        name='msisdn_additional'
-        value={values.msisdn_additional || ''}
-        onChange={handleChange}
-      />
-
-
       <p>Instagram (сслыка)</p>
       <input
         {...register('link_to_instagram')}
@@ -175,47 +149,6 @@ export const EditUserTab = ({user}) => {
         value={values.link_to_instagram || ''}
         onChange={handleChange}
       />
-
-
-      <p>Twitter (сслыка)</p>
-      <input
-        {...register('link_to_twitter')}
-        className={s.redirect_item}
-        name='link_to_twitter'
-        value={values.link_to_twitter || ''}
-        onChange={handleChange}
-      />
-
-
-      <p>Facebook (сслыка)</p>
-      <input
-        {...register('link_to_facebook')}
-        className={s.redirect_item}
-        name='link_to_facebook'
-        value={values.link_to_facebook || ''}
-        onChange={handleChange}
-      />
-
-
-      <p>Tiktok (сслыка)</p>
-      <input
-        {...register('link_to_tiktok')}
-        className={s.redirect_item}
-        name='link_to_tiktok'
-        value={values.link_to_tiktok || ''}
-        onChange={handleChange}
-      />
-
-
-      <p>Whats`app (ссылка)</p>
-      <input
-        {...register('link_to_whatsapp')}
-        className={s.redirect_item}
-        name='link_to_whatsapp'
-        value={values.link_to_whatsapp || ''}
-        onChange={handleChange}
-      />
-
 
       <p>Youtube (сслыка)</p>
       <input
@@ -246,37 +179,6 @@ export const EditUserTab = ({user}) => {
         onChange={handleChange}
       />
 
-
-      <p>Website</p>
-      <input
-        {...register('website')}
-        className={s.redirect_item}
-        name='website'
-        value={values.website || ''}
-        onChange={handleChange}
-      />
-
-
-      <p>Vkontakte</p>
-      <input
-        {...register('link_to_vk')}
-        className={s.redirect_item}
-        name='link_to_vk'
-        value={values.link_to_vk || ''}
-        onChange={handleChange}
-      />
-
-
-      <p>Map</p>
-      <input
-        {...register('link_to_map')}
-        className={s.redirect_item}
-        name='link_to_map'
-        value={values.link_to_map || ''}
-        onChange={handleChange}
-      />
-
-
       <p>Адрес</p>
       <input
         {...register('address')}
@@ -287,7 +189,7 @@ export const EditUserTab = ({user}) => {
       />
 
       <div className={s.redirect_btn}>
-        <Link to="/">
+        <Link to={`/user/${user.id}`}>
           <Button variant="primary">Назад</Button>{" "}
         </Link>
         <Button variant="primary" onClick={handleSubmit(onSubmit)}>Сохранить</Button>{" "}

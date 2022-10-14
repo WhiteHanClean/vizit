@@ -9,8 +9,11 @@ import {
 import { Space } from "antd";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Social = ({ user }) => {
+  const isAdmin = useSelector(state => state.auth.isAdmin)
+
   return (
     <div className={s.social}>
       <div className={s.social_mead}>
@@ -41,7 +44,7 @@ const Social = ({ user }) => {
           <Button variant="primary" size="lg">
             <a href="">070943534534</a>
           </Button>
-          {!!localStorage.getItem('token') && <Link to={`/redirect/${user?.id}`}>
+          {isAdmin && <Link to={`/redirect/${user?.id}`}>
             <Button variant="secondary" size="lg">
               Редактировать
             </Button>

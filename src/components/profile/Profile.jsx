@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import s from "./profile.module.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { editUser, getUser } from "../../store/reducers";
+import { useParams } from "react-router";
 
 const Profile = () => {
   const { user } = useSelector(state => state.user)
-  const [profile, setFileProfile] = useState("");
+  const { isAdmin } = useSelector(state => state.auth)
+  const dispatch = useDispatch();
+  const { id } = useParams();
 
-  const handleChangeProfile = (e) => {
+  const handleChangeProfile = async (e) => {
     const data = e.target.files[0];
-    setFileProfile(data);
+    await dispatch(editUser({id, data: { logo: data, token: user?.token }}))
+    dispatch(getUser(id))
   };
 
   return (
     <div className={s.profile_block}>
-      <input disabled={!localStorage.getItem('token')} className={s.profile} type="file" onChange={handleChangeProfile} />
+      <input disabled={!isAdmin} className={s.profile} type="file" onChange={handleChangeProfile} />
       {user?.logo && (
         <div>
           {/* <span>{file.name}</span> */}

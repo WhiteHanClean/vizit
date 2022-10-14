@@ -48,6 +48,16 @@ export const deleteBooks = createAsyncThunk('admin/deleteBooks', async ({ id, to
   }
 })
 
+export const deleteBook = createAsyncThunk('admin/deleteBook', async ({ id, token, bookId }, { dispatch }) => {
+  try {
+    const { data } = await axios.delete(`https://atlassoft.space/salam/public/api/booking/${id}/${bookId}/deleteBook?token=${token}`);
+    toast.success('Бронь успешно удалена!')
+    return data;
+  } catch (e) {
+    console.error(e)
+  }
+})
+
 const adminSlice = createSlice({
   name: 'admin',
   initialState: {

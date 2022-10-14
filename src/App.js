@@ -14,6 +14,7 @@ function App() {
         <Route path="/user/:id" element={ <Main />} />
         <Route path="/redirect/:id" element={<Redirect/>} />
         <Route path="/auth" element={ <Auth/>} />
+        <Route path="*" element={ <Auth/>} />
       </Routes>
       <Toaster />
     </div>

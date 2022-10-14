@@ -6,12 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { bookTime, getUserTime } from "../../store/reducers";
 import { Input, Modal } from "antd";
 import { useForm } from "react-hook-form";
+import { DatePicker } from "antd/es";
 
 const Order = ({ user }) => {
   const [currentTimeId, setCurrentTimeId] = useState();
   const [values, setValues] = useState({
     first_name: user?.first_name,
-    phone_number: ''
+    phone_number: '',
+    date: ''
   });
   const dispatch = useDispatch();
   const { times }  = useSelector(state => state.user);
@@ -31,11 +33,11 @@ const Order = ({ user }) => {
 
   const onSubmit = async (data, e) => {
     const dataForRequest = {
-      ...data,
       time_id: currentTimeId,
       id: user.id,
       first_name: values.first_name,
-      phone_number: values.phone_number
+      phone_number: values.phone_number,
+      date: values.date
     }
     await dispatch(bookTime(dataForRequest))
     handleCancel()
@@ -45,12 +47,12 @@ const Order = ({ user }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log({ name, value })
     setValues({
       ...values,
       [name]: value
     })
   }
-
 
   useEffect(() => {
     if (!!user.id) {
@@ -84,7 +86,7 @@ const Order = ({ user }) => {
           }
         </Accordion>
       </div>
-      <Modal title="Basic Modal" open={isModalOpen} onOk={handleSubmit(onSubmit)} onCancel={handleCancel}>
+      <Modal title="Basic Modal" style={{ top: 200 }} open={isModalOpen} onOk={handleSubmit(onSubmit)} onCancel={handleCancel}>
           <div className={s.modal}>
             <input
               {...register("name")}
@@ -99,6 +101,17 @@ const Order = ({ user }) => {
               placeholder='Номер телефона'
               value={values.phone_number}
               onChange={handleChange}
+            />
+            <DatePicker
+              {...register("date")}
+              name='date'
+              placeholder='день/месяц/год'
+              // value={values.date}
+              onChange={(_, dateString)=> {
+                setValues((prevState) => ({...prevState, date: dateString}))
+              }}
+              format={'DD/MM/YYYY'}
+              placement='bottomRight'
             />
           </div>
       </Modal>

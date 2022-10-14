@@ -20,9 +20,9 @@ export const getUserTime = createAsyncThunk('user/getTimes', async (user, { disp
   }
 })
 
-export const bookTime = createAsyncThunk('user/bookTime', async ({ id, time_id, first_name, phone_number }, { dispatch }) => {
+export const bookTime = createAsyncThunk('user/bookTime', async ({ id, time_id, first_name, phone_number, date }, { dispatch }) => {
   try {
-    const { data } = await axios.post(`https://atlassoft.space/salam/public/api/booking/${id}?time_id=${time_id}&name=${first_name}&phone_number=${phone_number}`);
+    const { data } = await axios.post(`https://atlassoft.space/salam/public/api/booking/${id}?time_id=${time_id}&name=${first_name}&phone_number=${phone_number}&date=${date}`);
     return data
   } catch (e) {
     console.error(e)
@@ -31,10 +31,9 @@ export const bookTime = createAsyncThunk('user/bookTime', async ({ id, time_id, 
 
 export const editUser = createAsyncThunk('user/editUser', async ({ id, data }, { dispatch }) => {
   const formData = new FormData();
-  Object.entries(data).forEach(item => {
+  Object.entries({...data, id}).forEach(item => {
     formData.append(item[0], item[1])
   })
-  console.log(formData.get('logo'))
   try {
     const { data } = await axios.post(`https://atlassoft.space/salam/public/api/users/${id}/update`, formData, {
       headers: {

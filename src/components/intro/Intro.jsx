@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
 import Profile from "../profile/Profile";
 import s from "./intro.module.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { editUser, getUser } from "../../store/reducers";
+import { useParams } from "react-router";
 
 const Intro = () => {
   const { user } = useSelector(state => state.user)
-  const [file, setFile] = useState("");
-  const handleChange = (e) => {
+  const { isAdmin } = useSelector(state => state.auth)
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const handleChange = async (e) => {
     const data = e.target.files[0];
-    setFile(data);
+    await dispatch(editUser({id, data: { image: data, token: user?.token }}))
+    dispatch(getUser(id))
   };
-  console.log(`https://atlassoft.space/salam/public${user?.image}`)
   return (
     <>
-      <input disabled={!localStorage.getItem('token')} className={s.intro} type="file" onChange={handleChange} />
+      <input disabled={!isAdmin} className={s.intro} type="file" onChange={handleChange} />
       <div className={s.intro_back}>
         <Profile/>
       </div>
       {user?.image && (
         <div>
-          {/* <span>{file.name}</span> */}
           <img className={s.intro_img} src={`https://atlassoft.space/salam/public${user?.image}`} />
         </div>
       )}

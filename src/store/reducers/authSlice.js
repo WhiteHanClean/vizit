@@ -15,12 +15,18 @@ const authSlice = createSlice({
   initialState: {
     token: '',
     id: '',
-    isActivated: false
+    isActivated: false,
+    isAdmin: false
+  },
+  reducers: {
+    getAdmin: (state, action) => {
+      state.isAdmin = localStorage.getItem('token') === action.payload
+    }
   },
   extraReducers: {
     [userActivate.fulfilled]: (state, { payload }) => {
       localStorage.setItem('token', payload.token)
-      return state = {
+       return state = {
         token: payload.token,
         id: payload.id,
         isActivated: true
@@ -30,3 +36,4 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
+export const { getAdmin } = authSlice.actions;

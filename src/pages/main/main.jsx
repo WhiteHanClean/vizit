@@ -4,7 +4,7 @@ import Intro from '../../components/intro/Intro';
 import Order from '../../components/order/Order';
 import Social from '../../components/social/Social';
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../store/reducers";
+import { getAdmin, getUser } from "../../store/reducers";
 import { useParams } from "react-router";
 
 const Main = () => {
@@ -15,6 +15,12 @@ const Main = () => {
   useEffect(() => {
     dispatch(getUser(id))
   }, [])
+
+  useEffect(() => {
+    if (user.token) {
+      dispatch(getAdmin(user.token))
+    }
+  }, [user])
     return (
         <>
             <Intro user={user}/>
